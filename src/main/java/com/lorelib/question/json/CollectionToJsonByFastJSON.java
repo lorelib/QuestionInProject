@@ -1,6 +1,7 @@
 package com.lorelib.question.json;
 
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
 import java.io.Serializable;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * FastJson: 集合序列化成JSON字符串时，如果存在循环引用对象，输出出现问题；
+ * FastJson: 集合序列化成JSON字符串时，如果存在多次引用同一集合对象，输出出现问题；
  * 详情请运行如下程序
  * Created by listening on 2016/11/11.
  */
@@ -27,9 +28,9 @@ public class CollectionToJsonByFastJSON {
         orders.add(o2);
 
         // 有问题
-        System.out.println(JSONArray.toJSONString(orders));
+        System.out.println(JSONObject.toJSONString(orders));
         // 解决方案
-        System.out.println(JSONArray.toJSONString(orders, SerializerFeature.DisableCircularReferenceDetect));
+        System.out.println(JSONObject.toJSONString(orders, SerializerFeature.DisableCircularReferenceDetect));
     }
 }
 
