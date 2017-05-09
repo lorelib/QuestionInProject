@@ -1,31 +1,27 @@
 在springmvc中使用原生filter需配置web.xml
-关键：
-<filter>
-    <filter-name>DelegateFilter</filter-name>
-    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
-    <init-param>
-        <param-name>targetBeanName</param-name>
-        <!-- 此处填写filter name -->
-        <param-value>authFilter</param-value>
-    </init-param>
-</filter>
-<filter-mapping>
-    <filter-name>DelegateFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-</filter-mapping>
-外加：
-<context-param>
-    <param-name>contextConfigLocation</param-name>
-    <param-value>classpath*:spring-*.xml</param-value>
-</context-param>
 
-<listener>
-    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-</listener>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath*:spring-*.xml</param-value>
+    </context-param>
 
-<listener>
-    <listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
-</listener>
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+
+    <filter>
+        <filter-name>DelegateFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <init-param>
+            <param-name>targetBeanName</param-name>
+            <param-value>logFilter</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>DelegateFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
 
 另外注意，如果在filter中调用了
 req.getInputStream()
