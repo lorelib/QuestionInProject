@@ -1,0 +1,6 @@
+经常碰到如下错误：
+applicaitonContext属性未注入
+
+原因是：引用applicaitonContext所属的类在该被引用类之前实例化，
+也就是说applicaitonContext所属的类还未实例化，
+通过@DependsOn注解可以强制初始化来解决这类依赖问题
