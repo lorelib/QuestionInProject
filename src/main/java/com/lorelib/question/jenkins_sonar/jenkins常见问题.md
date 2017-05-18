@@ -19,7 +19,7 @@
     
     
 2.jenkins中集成sonar
-在项目根目录加上sonar-project.properties怎么配置路径都有错误，不知道是不是我弄错了什么
+在项目根目录加上sonar-project.properties怎么配置路径都有错误，不知道是不是我弄错了什么（问题解决：没有加language，jenkins并不会去自动识别是什么语言）
 较常见的错误是：
         Findbugs needs sources to be compiled. Please build project before executing sonar or check the location of compiled classes to make it possible for Findbugs to analyse your project.
         
